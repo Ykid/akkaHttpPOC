@@ -5,8 +5,8 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import com.github.pvoznenko.HandlerAPI
 
-class UserHandler extends HandlerAPI{
-  override def setRoutes(): Route =  (path("userSpecificPath") & post) {
-    complete((StatusCodes.OK,"user/authentication"))
+class ProjectHandler extends HandlerAPI {
+  override def setRoutes(): Route = path("projectSubPath") {
+    complete("project.projectSubPath")
   }
 }
