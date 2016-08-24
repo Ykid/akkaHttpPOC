@@ -18,5 +18,5 @@ object Main extends App with Config {
   lazy val userApiHandler = new UserHandler()
   lazy val projectHandler = new ProjectHandler()
   lazy val rootHanlder = new RootHandler(userApiHandler, projectHandler)
-  Http().bindAndHandle(handler = logRequestResult("log")(rootHanlder.getRoutes()), interface = httpInterface, port = httpPort)
+  Http().bindAndHandle(handler = logRequestResult("log")(rootHanlder.getRoutes(())), interface = httpInterface, port = httpPort)
 }

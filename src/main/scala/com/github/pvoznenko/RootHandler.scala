@@ -6,10 +6,10 @@ import com.github.pvoznenko.api.{ProjectHandler, UserHandler}
 
 class RootHandler(userHandler: UserHandler,
                   projectHandler: ProjectHandler
-                 ) extends HandlerAPI {
-  override def setRoutes(): Route = pathPrefix("user") {
+                 ) extends HandlerAPI[ExtractedParamType.NoExtractedParam] {
+  override def setRoutes(t:Unit): Route = pathPrefix("user") {
     userHandler.getRoutes()
-  } ~ pathPrefix("project") {
-    projectHandler.getRoutes()
+  } ~ pathPrefix("project"/ JavaUUID) { projectId =>
+    projectHandler.getRoutes(projectId)
   }
 }
